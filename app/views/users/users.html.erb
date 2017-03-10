@@ -1,0 +1,39 @@
+<div class="container box_styling index_top">
+  <h1>Customers</h1>
+  <form class="add_button">
+    <a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#new-user-modal">Add
+      a new customer</a>
+  </form>
+</div>
+
+<div class="container">
+  <% @users.each do |u| %>
+      <div class="media box_styling index_customer">
+        <div class="media-left">
+          <a href="#">
+            <img class="media-object" src="<%= u.gravatar %>">
+          </a>
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading"><%= u.lastName %>, <%= u.firstName %></h4>
+          <div class="user-details">
+            <h5 class="media-heading">Email: <a href="mailto:<%= u.email %>"><%= u.email %></a></h5>
+            <h5 class="media-heading">Phone: <%= u.phoneNumber %></h5>
+          </div>
+          <div class="button-container">
+            <ul>
+              <li class="buttons"><a href="<%= account_path(u) %>" class="btn btn-success btn-xs">View Accounts</a></li>
+              <li class="buttons"><%= button_to 'Modify User', edit_user_path(u), :class => "btn btn-warning btn-xs" %></li>
+              <li class="buttons"><%= button_to "Delete User", u, method: :delete, :class => "btn btn-danger btn-xs",
+                                                data: {confirm: "Did you lose a client?"} %></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  <% end %>
+  <% if @users.empty? %>
+      <div class="alert alert-danger" role="alert"><strong>UH OH! </strong>No current customers: Better start marketing
+        better.
+      </div>
+  <% end %>
+</div>

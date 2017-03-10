@@ -1,0 +1,68 @@
+<div class="container box_styling">
+
+  <div class="media">
+    <div class="media-left">
+      <a href="#">
+        <img class="media-object" src="<%= @user.gravatar %>">
+      </a>
+    </div>
+    <div class="media-body">
+      <h3 class="media-heading"><%= @user.lastName %>, <%= @user.firstName %></h3>
+      <a href="mailto:<%= @user.email %>"><%= @user.email %></a>
+      <h5><%= @user.phoneNumber %></h5>
+      <h5 class="media-body net-worth">Total net worth: </h5>
+      <div class="add_button">
+        <a class="btn btn-success btn-l" data-toggle="modal" data-target="#new-account-modal">Add New Account</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render 'accounts/new_account_form' %>
+
+<div class="container">
+  <div class="row">
+
+    <% @accounts.each do |a| %>
+
+        <div class="media box_styling account_box">
+          <div class="media-body">
+            <h4 class="media-heading"><%= a.account_name %></h4>
+            <h5 class="media-heading">Type of Account:
+              <medium class="account-type"><%= a.account_type %></medium>
+            </h5>
+            <span>
+				    		<h6 class="media-body">Last Updated: <medium><%= time_ago_in_words a.updated_at %> ago</medium></h6>
+				    	</span>
+            <span>
+              <h6 class="media-body">Balance: $<medium><%= a.balance %></medium></h6>
+              </span>
+            <span class="holdings-display">
+				    		<h6 class="media-body">Holdings: <medium><%= a.holdings %></medium></h6>
+            </span>
+
+            <div class="button-container">
+              <ul>
+                <li class="buttons"><%= button_to 'Modify Accont', edit_account_path(a), :class => "btn btn-warning btn-xs" %></li>
+                <li class="buttons"><%= button_to "Delete Account", a, method: :delete, :class => "btn btn-danger btn-xs",
+                                                  data: {confirm: "Where'd the money go?"} %></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+    <% end %>
+    <% if @accounts.empty? %>
+        <div class="alert alert-info"><strong>:-( </strong> User has no active accounts currently.</div>
+    <% end %>
+    <script>
+      var balance = 0;
+      $(".acct-balance").each(function(i, obj) {
+          balance += parseInt(obj.innerHTML, 10);
+      });
+      balance = '$' + balance.toString();
+      $(".net-worth").append(balance);
+    </script>
+
+  </div>
+</div>

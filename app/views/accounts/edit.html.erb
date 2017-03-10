@@ -1,0 +1,55 @@
+<div class="container box_styling">
+  <h1>Edit account</h1>
+  <%= form_for(@accounts) do |a| %>
+
+      <% if @accounts.errors.any? %>
+          <div id="error_explanation">
+            <h2>
+              <%= pluralize(@accounts.errors.count, "error") %> prohibited
+              this accounts from being saved:
+            </h2>
+            <ul>
+              <% @accounts.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <div class="edit-container">
+
+        <p>
+          <%= a.label "Name of account" %><br>
+          <%= a.text_field :account_name %>
+        </p>
+
+        <p>
+          <%= a.label "Type of account" %><br>
+          <%= a.text_field :account_type, :readonly => true, :class => "edit-account-type" %>
+        </p>
+
+        <p>
+          <%= a.label "Balance on account" %><br>
+          <%= a.text_field :balance %>
+        </p>
+
+        <p class="edit-holdings">
+          <%= a.label "Holdings" %><br>
+          <%= a.text_field :holdings %>
+        </p>
+
+        <script>
+          if($(".edit-account-type").val() !== "Investment") {
+              $(".edit-holdings").remove();
+          }
+        </script>
+
+        <p>
+          <%= a.submit %>
+        </p>
+
+  <% end %>
+
+  <%= button_to 'Back' %>
+  </div>
+
+</div>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  person_id: 1
+  account_name: MyString
+  balance: 
+  holdings: MyText
+  account_type: MyString
+
+two:
+  person_id: 1
+  account_name: MyString
+  balance: 
+  holdings: MyText
+  account_type: MyString

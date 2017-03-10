@@ -13,3 +13,39 @@
  *= require_tree .
  *= require_self
  */
+.welcome-message {
+    color: white;
+}
+
+.add_button {
+    padding: 1em;
+}
+
+.box_styling {
+    border: thin solid lawngreen;
+    color: white;
+    border-radius: 10px;
+    background-color: #9EB9D4;
+    margin: 1em;
+}
+
+.container.index_top {
+    width: 100%;
+}
+
+.media.index_customer,
+.media.index_accounts{
+    margin:  1em;
+    padding: 1em;
+}
+
+.edit-container {
+    color: black;
+    padding: 1em;
+}
+
+li.buttons {
+    display: inline-block;
+    padding: 3px;
+    float:  left;
+}
